@@ -1,3 +1,35 @@
+let playerSelection;
+let computerSelection;
+let score = "0";
+let compScore = "0";
+let gameOver = false;
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissor = document.querySelector(".scissor");
+const div = document.querySelector("div");
+
+rock.addEventListener("click", () => {
+  if (gameOver === false) {
+    if (score <= 5 || compScore <= 5) {
+      playRound("rock");
+    }
+  }
+});
+paper.addEventListener("click", () => {
+  if (gameOver === false) {
+    if (score <= 5 || compScore <= 5) {
+      playRound("paper");
+    }
+  }
+});
+scissor.addEventListener("click", () => {
+  if (gameOver === false) {
+    if (score <= 5 || compScore <= 5) {
+      playRound("scissor");
+    }
+  }
+});
+
 // randomly return computers choices
 function getComputerChoice() {
   const select = ["rock", "paper", "scissor"];
@@ -5,13 +37,24 @@ function getComputerChoice() {
   return compChoice;
 }
 
-function playRound(playerSelection, computerSelection) {
-  computerSelection = getComputerChoice();
-  playerSelection = prompt(
-    "Type your selection. (Rock, Paper, or Scissor"
-  ).toLowerCase();
-  console.log(playerSelection);
+const checkWinner = () => {
+  div.textContent += ` | Player: ${score} vs CPU: ${compScore}`;
+  if (score == 5) {
+    gameOver = true;
+    return (div.innerHTML += ` <br>
+    ** YOU WON THE GAME :D **
+    `);
+  } else if (compScore == 5) {
+    gameOver = true;
+    return (div.innerHTML += ` <br>
+    ** YOU LOST THE GAME :( **
+      `);
+  }
+};
 
+function playRound(playerSelection) {
+  computerSelection = getComputerChoice();
+  console.log(playerSelection);
   if (
     playerSelection == "rock" ||
     playerSelection == "paper" ||
@@ -19,57 +62,43 @@ function playRound(playerSelection, computerSelection) {
   ) {
     if (playerSelection == "rock") {
       if (computerSelection == "rock") {
-        return console.log(`You Tied! Rock vs. Rock | Score: ${score}`);
+        div.textContent = `You Tied! Player: ${playerSelection} vs CPU: ${computerSelection}`;
+        return checkWinner();
       } else if (computerSelection == "paper") {
-        return console.log(`You Lose! Paper beats Rock | Score: ${score}`);
+        div.textContent = `You Lost this round. Player: ${playerSelection} vs CPU ${computerSelection}`;
+        compScore++;
+        return checkWinner();
       } else {
+        div.textContent = `You Won this round! Player: ${playerSelection} vs CPU ${computerSelection}`;
         score++;
-        return console.log(`You Win! Rock beats Scissor | Score: ${score}`);
+        return checkWinner();
       }
     } else if (playerSelection == "paper") {
       if (computerSelection == "rock") {
-        return console.log(`You Win! Paper beats Rock | Score: ${score}`);
+        div.textContent = `You Won this round! Player: ${playerSelection} vs CPU ${computerSelection}`;
+        score++;
+        return checkWinner();
       } else if (computerSelection == "paper") {
-        return console.log(`You Tied! Paper vs. Paper | Score: ${score}`);
+        div.textContent = `You Tied! Player: ${playerSelection} vs CPU: ${computerSelection}`;
+        return checkWinner();
       } else {
-        return console.log(`You Lose! Scissor beats Paper | Score: ${score}`);
+        div.textContent = `You Lost this round. Player: ${playerSelection} vs CPU ${computerSelection}`;
+        compScore++;
+        return checkWinner();
       }
     } else {
       if (computerSelection == "rock") {
-        return console.log(`You Lose! Rock beats Scissor | Score: ${score}`);
+        div.textContent = `You Lost this round. Player: ${playerSelection} vs CPU ${computerSelection}`;
+        compScore++;
+        return checkWinner();
       } else if (computerSelection == "paper") {
-        return console.log(`You Win! Scissor beats Paper | Score: ${score}`);
+        div.textContent = `You Won this round! Player: ${playerSelection} vs CPU ${computerSelection}`;
+        score++;
+        return checkWinner();
       } else {
-        return console.log(`You Tied! Scissor vs. Scissor | Score: ${score}`);
+        div.textContent = `You Tied! Player: Player: ${playerSelection} vs CPU: ${computerSelection}`;
+        return checkWinner();
       }
     }
-  } else {
-    alert("please enter valid input");
   }
 }
-
-function game() {
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(playRound(playerSelection, computerSelection));
-  console.log(playRound(playerSelection, computerSelection));
-  if(score >= 3) {
-    console.log(`You WIN! You won ${score}/5 games! Congratulations`)
-  }
-  else {
-    console.log(`You LOSE! You only won ${score}/5 games. Better luck next time.`)
-  }
-}
-
-let playerSelection;
-let computerSelection;
-let score = "0";
-game();
-
-//     store random choice
-//     get user choice
-//     changes user choice to all lowercase
-
-// Compares choices to determine winner
-//     returns win/lose statement
