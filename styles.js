@@ -6,7 +6,8 @@ let gameOver = false;
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissor = document.querySelector(".scissor");
-const div = document.querySelector("div");
+const div = document.querySelector(".roundPlay");
+const scoreDiv = document.querySelector(".score");
 
 rock.addEventListener("click", () => {
   if (gameOver === false) {
@@ -38,15 +39,15 @@ function getComputerChoice() {
 }
 
 const checkWinner = () => {
-  div.textContent += ` | Player: ${score} vs CPU: ${compScore}`;
+  scoreDiv.textContent = `Player: ${score} vs CPU: ${compScore}`;
   if (score == 5) {
     gameOver = true;
-    return (div.innerHTML += ` <br>
+    return (scoreDiv.innerHTML += ` <br>
     ** YOU WON THE GAME :D **
     `);
   } else if (compScore == 5) {
     gameOver = true;
-    return (div.innerHTML += ` <br>
+    return (scoreDiv.innerHTML += ` <br>
     ** YOU LOST THE GAME :( **
       `);
   }
@@ -55,11 +56,7 @@ const checkWinner = () => {
 function playRound(playerSelection) {
   computerSelection = getComputerChoice();
   console.log(playerSelection);
-  if (
-    playerSelection == "rock" ||
-    playerSelection == "paper" ||
-    playerSelection == "scissor"
-  ) {
+  if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissor") {
     if (playerSelection == "rock") {
       if (computerSelection == "rock") {
         div.textContent = `You Tied! Player: ${playerSelection} vs CPU: ${computerSelection}`;
