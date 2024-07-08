@@ -6,7 +6,7 @@ let gameOver = false;
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissor = document.querySelector(".scissor");
-const div = document.querySelector(".roundPlay");
+const result = document.querySelector(".result");
 const compRock = document.querySelector(".compRock");
 const compPaper = document.querySelector(".compPaper");
 const compScissor = document.querySelector(".compScissor");
@@ -51,15 +51,13 @@ const checkWinner = () => {
   compScoreDiv.textContent = `COMPUTER:${compScore}`;
   if (score == 5) {
     gameOver = true;
-    return (scoreDiv.innerHTML += ` <br>
-    ** YOU WON THE GAME :D **
+    return (result.textContent = `Player Wins!
     `);
   } else if (compScore == 5) {
     playerScore.textContent = `PLAYER:${score}`;
     compScoreDiv.textContent = `COMPUTER:${compScore}`;
     gameOver = true;
-    return (scoreDiv.innerHTML += ` <br>
-    ** YOU LOST THE GAME :( **
+    return (result.textContent = `Computer Wins!
       `);
   }
 };
@@ -67,59 +65,79 @@ const checkWinner = () => {
 function playRound(playerSelection) {
   computerSelection = getComputerChoice();
 
-  //remove active class from computer selection
   compRock.classList.remove("active");
   compPaper.classList.remove("active");
   compScissor.classList.remove("active");
+
+  compRock.classList.remove("active-winner");
+  compPaper.classList.remove("active-winner");
+  compScissor.classList.remove("active-winner");
+
+  rock.classList.remove("active");
+  paper.classList.remove("active");
+  scissor.classList.remove("active");
+
+  rock.classList.remove("active-winner");
+  paper.classList.remove("active-winner");
+  scissor.classList.remove("active-winner");
 
   console.log(playerSelection);
   if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissor") {
     if (playerSelection == "rock") {
       if (computerSelection == "rock") {
         compRock.classList.add("active");
-        div.textContent = `You Tied! Player: ${playerSelection} vs CPU: ${computerSelection}`;
+        rock.classList.add("active");
+        result.textContent = `Tied`;
         return checkWinner();
       } else if (computerSelection == "paper") {
-        compPaper.classList.add("active");
-        div.textContent = `You Lost this round. Player: ${playerSelection} vs CPU ${computerSelection}`;
+        compPaper.classList.add("active-winner");
+        rock.classList.add("active");
+        result.textContent = `You Lost`;
         compScore++;
         return checkWinner();
       } else {
         compScissor.classList.add("active");
-        div.textContent = `You Won this round! Player: ${playerSelection} vs CPU ${computerSelection}`;
+        rock.classList.add("active-winner");
+        result.textContent = `You Won`;
         score++;
         return checkWinner();
       }
     } else if (playerSelection == "paper") {
       if (computerSelection == "rock") {
         compRock.classList.add("active");
-        div.textContent = `You Won this round! Player: ${playerSelection} vs CPU ${computerSelection}`;
+        paper.classList.add("active-winner");
+        result.textContent = `You Won`;
         score++;
         return checkWinner();
       } else if (computerSelection == "paper") {
         compPaper.classList.add("active");
-        div.textContent = `You Tied! Player: ${playerSelection} vs CPU: ${computerSelection}`;
+        paper.classList.add("active");
+        result.textContent = `Tied`;
         return checkWinner();
       } else {
-        compScissor.classList.add("active");
-        div.textContent = `You Lost this round. Player: ${playerSelection} vs CPU ${computerSelection}`;
+        compScissor.classList.add("active-winner");
+        paper.classList.add("active");
+        result.textContent = `You Lost`;
         compScore++;
         return checkWinner();
       }
     } else {
       if (computerSelection == "rock") {
-        compRock.classList.add("active");
-        div.textContent = `You Lost this round. Player: ${playerSelection} vs CPU ${computerSelection}`;
+        compRock.classList.add("active-winner");
+        scissor.classList.add("active");
+        result.textContent = `You Lost`;
         compScore++;
         return checkWinner();
       } else if (computerSelection == "paper") {
         compPaper.classList.add("active");
-        div.textContent = `You Won this round! Player: ${playerSelection} vs CPU ${computerSelection}`;
+        scissor.classList.add("active-winner");
+        result.textContent = `You Won`;
         score++;
         return checkWinner();
       } else {
         compScissor.classList.add("active");
-        div.textContent = `You Tied! Player: Player: ${playerSelection} vs CPU: ${computerSelection}`;
+        scissor.classList.add("active");
+        result.textContent = `Tied`;
         return checkWinner();
       }
     }
