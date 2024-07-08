@@ -4,19 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Rock, Paper, Scissors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet" />
+    <title>Rock 🪨 Paper 🧻 Scissors ✂️</title>
   </head>
   <body>
     <div class="container">
-      <h1>ROCK / PAPER / SCISSORS</h1>
-      <p>First to 5 wins!</p>
-      <div class="selection">
-        <button class="rock">🪨</button>
-        <button class="paper">📰</button>
-        <button class="scissor">✂️</button>
+      <h1>ROCK 🪨 PAPER 🧻 SCISSORS ✂️</h1>
+      <div class="gameContainer">
+        <div class="innerGameContainer">
+          <p>First to 5 wins!</p>
+          <div class="scoreContainer">
+            <div class="score"></div>
+            <div class="compScore"></div>
+          </div>
+          <div class="selection">
+            <div class="playerSelectionDiv">
+              <button class="rock"><img src="./pictures/Image.png" alt="" srcset="" /></button>
+              <button class="paper"><img src="./pictures/Image2.png" alt="" srcset="" /></button>
+              <button class="scissor"><img src="./pictures/Image3.png" alt="" srcset="" /></button>
+            </div>
+            <div class="computerSelectionDiv">
+              <button class="compRock"><img src="./pictures/Image.png" alt="" srcset="" /></button>
+              <button class="compPaper"><img src="./pictures/Image2.png" alt="" srcset="" /></button>
+              <button class="compScissor"><img src="./pictures/Image3.png" alt="" srcset="" /></button>
+            </div>
+          </div>
+          <div class="roundPlay"></div>
+        </div>
       </div>
-      <div class="roundPlay"></div>
-      <div class="score"></div>
     </div>
     <script src="styles.js"></script>
   </body>

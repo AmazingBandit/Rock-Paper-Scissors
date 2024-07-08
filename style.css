@@ -1,17 +1,118 @@
 :root {
   --primary-color: black;
-  --secondary-color: yellow;
-  --hero-color: red;
+  --secondary-color: rgb(187, 165, 198);
+  --hero-color: rgb(152, 119, 169);
+}
+
+* {
+  font-family: "Concert One", sans-serif;
+  font-style: normal;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
 .container {
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  width: 100vw;
+}
+
+.container h1 {
+  display: flex;
+  font-size: 1.8em;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  width: 100vw;
+}
+
+.container p {
+  background-color: var(--hero-color);
+  font-size: 1.5em;
+}
+
+.scoreContainer {
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.score,
+.compScore {
+  display: flex;
+  justify-content: center;
+  font-size: 1.7em;
+}
+
+.score {
+  color: blue;
+}
+
+.selection {
+  display: grid;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.playerSelectionDiv,
+.computerSelectionDiv {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 2em;
+  gap: 10px;
 }
 
-.selection button {
+.container img {
+  height: 120px;
+  width: 120px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.container button {
+  height: 120px;
+  width: 120px;
+  border: 0px;
+  background-color: unset;
+}
+
+.gameContainer {
+  display: grid;
+  padding: 10px;
+  background: linear-gradient(to bottom, #0f0f0f 0%, #ffffff 100%);
+}
+
+.innerGameContainer {
+  padding: 5px;
+  background-color: var(--secondary-color);
+}
+
+.container p {
+  display: flex;
+  justify-content: center;
+}
+
+.playerSelectionDiv button {
   cursor: pointer;
   font-size: 30px;
+}
+
+.playerSelectionDiv img:hover {
+  background-color: blue;
+}
+
+.active > img {
+  transition: 1s;
+  background-color: red;
+}
+
+.roundPlay {
+  margin-top: 30px;
+  font-size: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
